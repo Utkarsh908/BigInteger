@@ -2,6 +2,8 @@
 #include<string.h>
 #include<stdlib.h>
 #include"BigInteger.h"
+
+
 void addAtHead(struct node**head,struct node**tail,char val){
     struct node*temp=(struct node*)malloc(sizeof(struct node));
     temp->data=val-'0';
@@ -13,6 +15,8 @@ void addAtHead(struct node**head,struct node**tail,char val){
     *head=temp;
     if(!*tail) *tail=temp;
 }
+
+
 struct BigInteger initialize(char*str){
     int i=0,l=strlen(str);
     struct BigInteger temp;
@@ -28,6 +32,8 @@ struct BigInteger initialize(char*str){
     }
     return temp;
 }
+
+
 void addAtTail(struct node**head,struct node**tail,int val){
     struct node*newNode=(struct node*)malloc(sizeof(struct node));
     newNode->data=val;
@@ -40,6 +46,7 @@ void addAtTail(struct node**head,struct node**tail,int val){
     (*tail)->next=newNode;
     *tail=newNode;
 }
+
 int greaterMagnitude(struct BigInteger n1,struct BigInteger n2){
     if(n1.size > n2.size) return 1;
     if(n1.size < n2.size) return 0;
@@ -83,6 +90,7 @@ void listSubtract(struct node*l1,struct node*l2,struct BigInteger*n3){
         l1=l1->next;
     }
 }
+
 void listAddition(struct node *l1,struct node *l2,struct BigInteger*n3){
     int c=0,x=0;
     while(l1 && l2){
@@ -109,6 +117,8 @@ void listAddition(struct node *l1,struct node *l2,struct BigInteger*n3){
         n3->size += 1;
     }
 }
+
+
 struct BigInteger copyBigint(struct BigInteger n1){
     struct BigInteger n2=initialize("");
     n2.sign=n1.sign;
@@ -128,6 +138,7 @@ void deleteList(struct node**head,struct node**tail){
     }
     *head=*tail=NULL;
 }
+
 struct BigInteger add(struct BigInteger n1,struct BigInteger n2){
     struct BigInteger n3=initialize("");
     if(n1.size == 0){
@@ -168,6 +179,8 @@ struct BigInteger sub(struct BigInteger n1,struct BigInteger n2){
     n2.sign *= -1;
     return n3;
 }
+
+
 struct BigInteger mul(struct BigInteger n1,struct BigInteger n2){
     struct BigInteger n3=initialize("");
     if(n1.head == NULL || n2.head == NULL) return n3;
@@ -225,6 +238,8 @@ int equal(struct BigInteger n1,struct BigInteger n2){
     }
     return 1;
 }
+
+
 int table(struct BigInteger n1,struct BigInteger n2){
     if(greaterMagnitude(n1,n2) == 0) return 0;
     char j='1';
@@ -244,6 +259,8 @@ int table(struct BigInteger n1,struct BigInteger n2){
     }
     return 1;
 }
+
+
 struct BigInteger div1(struct BigInteger n1,struct BigInteger n2){
     struct BigInteger n3=initialize("");
     if(n1.head == NULL || n2.head == NULL) return n3;
@@ -299,6 +316,8 @@ struct BigInteger div1(struct BigInteger n1,struct BigInteger n2){
     }
     return n3;
 }
+
+
 struct BigInteger mod(struct BigInteger n1,struct BigInteger n2){
     struct BigInteger n3=initialize("");
     if(n1.head == NULL || n2.head == NULL) return n3;
@@ -358,17 +377,22 @@ struct BigInteger mod(struct BigInteger n1,struct BigInteger n2){
     }
     return n3;
 }
+
+
 void display(struct BigInteger n1){
     if(n1.size == 0) {
         printf("0\n");
         return;
     }
+
     if(n1.sign == -1) printf("-");
     struct node*itr=n1.tail;
     while(itr){
         printf("%d",itr->data);
         itr=itr->prev;
     }
+
     printf("\n");
+
 }
 
